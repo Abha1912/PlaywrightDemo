@@ -16,6 +16,7 @@ class LoginPage{
 
           // Login heading/text
           this.txtLoginHeading = page.locator("//div[@class='login-form']//h2");
+          this.errorMessage = page.getByText('Your email or password is incorrect!');
 
           //inputFields
           this.inputEmail = page.locator("[data-qa='login-email']");
@@ -39,6 +40,10 @@ class LoginPage{
         await CommonMethods.click(this.btnLogin);
     }
 
+    async validationMessage()
+    {
+        await expect(this.errorMessage).toHaveText('Your email or password is incorrect!');
+    }
 }
 
 // Export the LoginPage class so it can be imported and used in test cases or Playwright fixtures.
