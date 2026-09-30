@@ -38,3 +38,32 @@ test('TC002 Login User with correct email and password',async({homePage,loginPag
     //await homePage.validateAccountDeletedMessage();
 
 });
+
+
+
+test('TC003 Login User with incorrect email and password',async({homePage,loginPage})=>{
+
+    // Read login credentials from the JSON test data file.
+    // The login() method returns the login test data.
+    const loginData = JsonReader.login();
+
+    // Validate that the Home Page title is correct.
+    await homePage.validatePageTitle();
+
+    // Click the "Signup / Login" link to open the Login Page.
+    await homePage.openLoginPage();
+
+    // Verify that the Login Page heading is visible.
+    await loginPage.validateLoginHeading();
+
+    // Login using the valid email and password retrieved from the JSON test data.
+        await loginPage.login(
+        loginData.inValidUser.email,
+        loginData.inValidUser.password
+    );
+
+
+    await loginPage.validationMessage();
+
+
+});
