@@ -44,7 +44,7 @@ pipeline {
 
             steps {
 
-                bat 'call npx playwright test'
+                bat 'call npx playwright test --project=chromium'
 
             }
 
