@@ -5,6 +5,7 @@ pipeline {
     tools {
 
         nodejs 'NodeJS-26'
+        allure 'Allure'
 
     }
 
@@ -49,7 +50,14 @@ pipeline {
             }
 
         }
+        post {
+            always {
+                allure([
+                    results: [[path: 'allure-results']],
+                    reportBuildPolicy: 'ALWAYS'
+                ])
+            }
+
+        }
 
     }
-
-}
